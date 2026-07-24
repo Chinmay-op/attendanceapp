@@ -199,7 +199,7 @@ class _SignupScreenState extends State<SignupScreen>
 
                         // Class dropdown
                         DropdownButtonFormField<String>(
-                          value: _selectedClass,
+                          initialValue: _selectedClass,
                           dropdownColor: AppTheme.cardDark,
                           style: AppTheme.bodyLarge,
                           decoration: const InputDecoration(

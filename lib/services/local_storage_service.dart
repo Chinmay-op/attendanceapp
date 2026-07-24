@@ -33,9 +33,7 @@ class LocalStorageService {
   }
 
   List<AttendanceRecord> getUnsyncedRecords() {
-    return _attendanceRecords.values
-        .where((r) => !r.isSynced)
-        .toList();
+    return _attendanceRecords.values.where((r) => !r.isSynced).toList();
   }
 
   List<AttendanceRecord> getRecordsByDate(String classId, String date) {
@@ -45,9 +43,7 @@ class LocalStorageService {
   }
 
   List<AttendanceRecord> getRecordsForStudent(String uid) {
-    return _attendanceRecords.values
-        .where((r) => r.uid == uid)
-        .toList();
+    return _attendanceRecords.values.where((r) => r.uid == uid).toList();
   }
 
   Map<String, String> getStudentMonthlyStatus(
@@ -56,8 +52,7 @@ class LocalStorageService {
     final records = _attendanceRecords.values.where((r) =>
         r.uid == uid &&
         r.classId == classId &&
-        r.date.startsWith(
-            '$year-${month.toString().padLeft(2, '0')}'));
+        r.date.startsWith('$year-${month.toString().padLeft(2, '0')}'));
 
     for (final record in records) {
       result[record.date] = record.status;
@@ -69,7 +64,7 @@ class LocalStorageService {
     final record = _attendanceRecords.get(key);
     if (record != null) {
       record.isSynced = true;
-      await record.save();
+      await _attendanceRecords.put(key, record);
     }
   }
 
@@ -78,7 +73,7 @@ class LocalStorageService {
       final record = _attendanceRecords.get(key);
       if (record != null) {
         record.isSynced = true;
-        await record.save();
+        await _attendanceRecords.put(key, record);
       }
     }
   }
@@ -103,7 +98,8 @@ class LocalStorageService {
     return (present / records.length) * 100;
   }
 
-  Map<String, int> getMonthlyStats(String uid, String classId, int year, int month) {
+  Map<String, int> getMonthlyStats(
+      String uid, String classId, int year, int month) {
     final prefix = '$year-${month.toString().padLeft(2, '0')}';
     final records = _attendanceRecords.values
         .where((r) =>

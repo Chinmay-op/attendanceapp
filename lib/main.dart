@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
 import 'utils/theme.dart';
-import 'services/auth_service.dart';
 import 'services/firestore_service.dart';
 import 'services/biometric_service.dart';
 import 'services/pi_api_service.dart';
@@ -21,6 +20,7 @@ import 'providers/sync_provider.dart';
 import 'screens/splash_screen.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/auth/signup_screen.dart';
+import 'screens/auth/forgot_password_screen.dart';
 import 'screens/student_home.dart';
 import 'screens/teacher_home.dart';
 import 'screens/common/sync_status_screen.dart';
@@ -122,6 +122,7 @@ class AttendanceApp extends StatelessWidget {
           '/': (ctx) => const SplashScreen(),
           '/login': (ctx) => const LoginScreen(),
           '/signup': (ctx) => const SignupScreen(),
+          '/forgot_password': (ctx) => const ForgotPasswordScreen(),
           '/student_home': (ctx) => const StudentHome(),
           '/teacher_home': (ctx) => const TeacherHome(),
           '/sync_status': (ctx) => const SyncStatusScreen(),

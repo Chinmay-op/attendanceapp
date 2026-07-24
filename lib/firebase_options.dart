@@ -26,14 +26,15 @@ class DefaultFirebaseOptions {
     }
   }
 
-  // TODO: Replace with your actual Firebase project config
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'YOUR_ANDROID_API_KEY',
-    appId: 'YOUR_ANDROID_APP_ID',
-    messagingSenderId: 'YOUR_SENDER_ID',
-    projectId: 'YOUR_PROJECT_ID',
-    storageBucket: 'YOUR_STORAGE_BUCKET',
+    apiKey: 'AIzaSyC_shcWlBT0HYgER4j53CxomaUjXAoY7c0',
+    appId: '1:566626779962:android:1109682194df2d0a760603',
+    messagingSenderId: '566626779962',
+    projectId: 'flutterdgoat',
+    storageBucket: 'flutterdgoat.firebasestorage.app',
   );
+
+  // TODO: Replace with your actual Firebase project config
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'YOUR_IOS_API_KEY',

@@ -29,7 +29,7 @@ class PiApiService {
           )
           .timeout(const Duration(seconds: 10));
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         return jsonDecode(response.body);
       } else {
         throw Exception(
@@ -48,8 +48,9 @@ class PiApiService {
           .timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
-        final List<dynamic> data = jsonDecode(response.body);
-        return data.cast<Map<String, dynamic>>();
+        final Map<String, dynamic> data = jsonDecode(response.body);
+        final List<dynamic> students = data['students'] ?? [];
+        return students.cast<Map<String, dynamic>>();
       } else {
         throw Exception('Pi server error: ${response.statusCode}');
       }
@@ -66,7 +67,7 @@ class PiApiService {
     try {
       final response = await http
           .post(
-            Uri.parse('$_baseUrl/start_session'),
+            Uri.parse('$_baseUrl/session/start'),
             headers: {'Content-Type': 'application/json'},
             body: jsonEncode({
               'classId': classId,
@@ -85,7 +86,7 @@ class PiApiService {
   Future<bool> stopSession() async {
     try {
       final response = await http
-          .post(Uri.parse('$_baseUrl/stop_session'))
+          .post(Uri.parse('$_baseUrl/session/stop'))
           .timeout(const Duration(seconds: 10));
 
       return response.statusCode == 200;

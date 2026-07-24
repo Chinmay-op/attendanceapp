@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/attendance_provider.dart';
-import '../../providers/sync_provider.dart';
 import '../../utils/theme.dart';
 import '../../utils/helpers.dart';
 import '../../widgets/stat_card.dart';
 import '../../widgets/sync_indicator.dart';
 import '../../widgets/attendance_card.dart';
+import '../student/student_analytics_screen.dart';
 
 class StudentDashboard extends StatefulWidget {
   const StudentDashboard({super.key});
@@ -94,7 +94,16 @@ class _StudentDashboardState extends State<StudentDashboard> {
                 const SizedBox(height: 24),
 
                 // Attendance percentage hero card
-                Container(
+                GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const StudentAnalyticsScreen(),
+                    ),
+                  );
+                },
+                child: Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
@@ -183,7 +192,18 @@ class _StudentDashboardState extends State<StudentDashboard> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 20),
+                ),
+                const SizedBox(height: 6),
+                Center(
+                  child: Text(
+                    'Tap for detailed analytics →',
+                    style: AppTheme.labelStyle.copyWith(
+                      color: AppTheme.accentPurple.withOpacity(0.7),
+                      fontSize: 11,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
 
                 // Stats row
                 Row(

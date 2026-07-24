@@ -14,8 +14,8 @@ class StudentCalendarScreen extends StatefulWidget {
 }
 
 class _StudentCalendarScreenState extends State<StudentCalendarScreen> {
-  int _currentYear = DateTime.now().year;
-  int _currentMonth = DateTime.now().month;
+  final int _currentYear = DateTime.now().year;
+  final int _currentMonth = DateTime.now().month;
   Map<String, String> _monthlyData = {};
 
   @override
